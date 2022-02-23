@@ -242,8 +242,6 @@ popCornSongNotes = [
     }
 ]
 
-
-
 function createGameScreen() {
     let pianoKeys = document.querySelector('.piano-key-container')
     let gameNotesContainer = document.querySelector('.game-notes-container')
@@ -336,6 +334,7 @@ function createNoteInChannel(noteObject) {
     let noteDiv = document.querySelector('[data-floating-note="' + noteObject.keyNote + '"]')
     if(noteObject.keyColour === 'white') {
         noteDiv.classList.add('white-note-target')
+        $('.target-note').fadeIn(1000)
     } else if (noteObject.keyColour === 'black') {
         noteDiv.classList.add('black-note-target')
     }
@@ -344,7 +343,6 @@ function createNoteInChannel(noteObject) {
 
 createGameScreen()
 play() // remove this line after coding (gets called by start game button)
-
 
 
 let noteC4 = keyBoardArray.find(object => object.keyNote === 'c4')
