@@ -385,6 +385,28 @@ let popcornSongNotes = [
     },
 ]
 
+let exampleGameState = [
+     {
+        noteObject: {
+            keyColour: 'white',
+            keyNote: 'b4',
+            keyCode: 'KeyD',
+            label: 'D',
+            pressed: false,
+            frequency: 246.9417
+        },
+        targetNote: {
+            keyNote: 'b4',
+            notePlayedAt: 2000,
+            duration: 500
+        },
+        noteHTML: "div blah",
+        showing: false,
+        targetHit: null,
+        id: 0
+    }
+]
+
 
 function createGameScreen() {
     let pianoKeys = document.querySelector('.piano-key-container')
@@ -437,6 +459,20 @@ function loadSong(song) {
     })
 }
 
+function hitDetector(gameTimer) {
+    let targetTime = exampleGameState[0].targetNote.notePlayedAt
+    let missedHit = targetTime + 200
+    let noteDiv = document.querySelector('[data-floating-note="' + exampleGameState[0].id + '"]')
+    if(gameTimer >= targetTime && gameTimer <= missedHit) {
+        console.log('wooooooooo')
+        noteDiv.classList.add('.target-hit')
+    } else {
+        console.log('boooooooo')
+        noteDiv.classList.add('.target-missed')
+    }
+
+
+}
 function play() {
 
     let audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -488,7 +524,10 @@ function play() {
 
 }
 
+
+
 createGameScreen()
+hitDetector(2300)
 
 
 
